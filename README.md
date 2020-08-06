@@ -1,137 +1,78 @@
 
 
-# Docker-compose
+# net.ouiedire.www (v0.0.0-1-gf571844)
 
-## On crée un fichier  'Dockerfile' dans lequel on va définir l'environnement d'execution, par exemple pdo, php...
+## Pré-requis
 
-```
-FROM php:apache
-RUN docker-php-ext-install pdo pdo_mysql
-COPY ./src /var/www/html/
-```
+Les logiciels suivant doivent être installés sur la machine hôte :
 
-## Et un fichier 'docker-compose.yml' dans lequel on determine les différents services et on les configure  
+- [Github CLI](https://cli.github.com/)
+- [Docker](https://www.docker.com/)
 
-```
-version: '3'
-services:
+## Présentation
 
-    mysql: 
-        image: mysql:5.7.31 
-        environment: 
-            MYSQL_ROOT_PASSWORD: aav
-            MYSQL_DATABASE: net.ouiedire.www
-        volumes: 
-            - ./src/bdd.sql:/docker-entrypoint-initdb.d/bdd.sql    
+### Principales fonctionnalités
 
-    adminer:
-        image: adminer:latest  
-        labels:
-            - "traefik.enable=true"
-            - "traefik.http.routers.adminer.entrypoints=web"
-            - "traefik.http.routers.adminer.rule=Host(`adminer.net.ouiedire.www.localhost`)"  
-        
-    php:
-        build: .
-        image: kobische/skel
-        labels:
-            - "traefik.enable=true"
-            - "traefik.http.routers.php.entrypoints=web"
-            - "traefik.http.routers.php.rule=Host(`php.net.ouiedire.www.localhost`)"
+- Bibliothèque de compilations d'une multitude de personnes invité.es 
+- Pour l'utilisateur: écouter et télécharger les différentes compilations 
+- Pour l'administrateur: ajout de nouvelles compilations
 
-```            
+### Services
+
+#### Application
+
+- `apache` : Image Docker basée sur l'image [php:apache](https://hub.docker.com/layers/php/library/php/7.4.8-apache/images/sha256-d64789a928c6ff660e94567ad044aec6dded6a5b2cc60ee6f131ae50b1b6d53a?context=explore). Elle embarque les sources de l'application
+- `db` : Serveur des bases de données de l'application
+
+#### Outils de maintenance et surveillance
+
+- [`adminer`](https://www.adminer.org) : Interface graphique de gestion des bases de données du service `db`
+- [`portainer`](https://www.portainer.io) : Interface graphique de gestion du serveur Docker
+- [`traefik`](https://www.traefik.io) : Routeur HTTP et TCP. Point d'entrée vers les différents services de l'applications
+- [`directus`](https://directus.io/) : API dynamique, permet d'administrer entre autre la base de données 
+
+## Utilisation
 
 
-# Portainer : making container management easier
+## Développement
 
-## Installation : https://www.portainer.io/installation/
+### Commandes 
 
-```
-$ docker volume create portainer_data
-$ docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+- clean : suppression des conteneurs. Les volumes sont conservés
 
+```sh
+make clean
 ```
 
+- help : Affichage de ce message d'aide et des informations urls publiques
 
-# Makefile
-## Création d'un fichier Makefile dans lequel on va définir des commandes qu'on utilise souvent par exemple : 
-
-```
-start: ## demarrer
-	docker-compose up --build -d
+```sh
+make help
 ```
 
-- On peut lui demander d'executer toujours une commande avant un autre : 
+- start :  Démarrage de de l'application 
+
+```sh
+make start
 ```
-clean: stop ## supprimer
-	docker-compose rm -f
+
+- stop : Arrêt de l'application 
+
+```sh 
+make stop
 ```
-Ici avant de supprimer un container il va d'abord l'arrêter    
+
+## URL publiques 
+
+### Application
+
+- Page d'acceuil: (http://net.ouiedire.www.localhost)
+
+### Outils
+
+- Adminer: http://adminer.net.ouiedire.www.localhost
+- Portainer: http://portainer.net.ouiedire.www.localhost
+- Traefik: http://traefik.net.ouiedire.www.localhost
+- Directus: (soon) 
 
 
-- On peut aussi executer plusieurs commandes :
-```
-portainer-open: portainer ## ouvrir portainer dans le navigateur	
-	sleep 3 
-	browse http://localhost:9000/#/home
-```
-ici portainer va s'ouvrir dans le browser et marquer un temps de 3 sec
-
-
-# Installation de Traefik : Traefik is an open-source Edge Router  : https://docs.traefik.io/
-
-## Dans le fichier : docker-compose.yml
-on ajoute : 
-
-```
-  traefik:
-    command:
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-    image: traefik:v2.2.8
-    ports:
-      - "80:80"
-      - "8080:8080"
-    volumes:
-       - /var/run/docker.sock:/var/run/docker.sock:ro
-  ```
-
-On ajoute le label ici à php et adminer : 
-
-```
-  labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.adminer.entrypoints=web"
-      - "traefik.http.routers.adminer.rule=Host(`php.lenomduprojet.localhost`)"
-```      
-
-
-
-# Création d'un template à partir de skel : https://cookiecutter.readthedocs.io/en/1.7.2/installation.html 
-
-## Création d'un fichier 
-```
-net.ouiedire.www 
-```
-Mettre tout le projet dedans 
-
-
-## Création d'un fichier 
-```
-cookiecutter.json 
-
-{
-    "project_slug": "Hello"
-   
-}
-```
-## Création d'un dossier et Se placer dedans et créer le template: 
-
-```
-cookiecutter ../skel/
-```
-## Définir le nom du projet : 
-
-et c'est parti !! 
