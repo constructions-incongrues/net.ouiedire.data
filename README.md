@@ -73,6 +73,6 @@ make stop
 - Adminer: http://adminer.net.ouiedire.www.localhost
 - Portainer: http://portainer.net.ouiedire.www.localhost
 - Traefik: http://traefik.net.ouiedire.www.localhost
-- Directus: (soon) 
+- Directus: http://directus.net.ouiedire.www.localhost
 
 
