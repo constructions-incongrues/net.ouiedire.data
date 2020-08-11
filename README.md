@@ -33,8 +33,11 @@ Les logiciels suivant doivent être installés sur la machine hôte :
 
 ## Utilisation
 
-
 ## Développement
+
+### Contribution
+
+Se référer au [guide de contribution](/CONTRIBUTING.md).
 
 ### Commandes 
 
