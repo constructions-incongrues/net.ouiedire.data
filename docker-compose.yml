@@ -21,10 +21,28 @@ services:
         image: mariadb:latest
         environment:
             MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: net.ouiedire.www
+            MYSQL_DATABASE: ouiedire
         volumes:
             - ./src/bdd.sql:/docker-entrypoint-initdb.d/bdd.sql
-
+    
+    directus:
+        image: directus/directus:v8.8.1-apache
+        environment:
+            DIRECTUS_APP_ENV: "production"
+            DIRECTUS_AUTH_PUBLICKEY: "aave"
+            DIRECTUS_AUTH_SECRETKEY: "aaver" 
+            DIRECTUS_DATABASE_HOST: "db"
+            DIRECTUS_DATABASE_NAME: "ouiedire"
+            DIRECTUS_DATABASE_USERNAME: "root"
+            DIRECTUS_DATABASE_PASSWORD: "root"
+        volumes:
+            - ./data/config:/var/directus/config
+            - ./data/uploads:/var/directus/public/uploads    
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.directus.entrypoints=web"
+            - "traefik.http.routers.directus.rule=Host(`directus.net.ouiedire.www.localhost`)"  
+                  
     portainer:
         image: portainer/portainer:1.24.1-alpine
         labels:
@@ -49,3 +67,4 @@ services:
             - "80:80"
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock:ro
+    

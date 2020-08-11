@@ -42,4 +42,4 @@ urls: # Affichage de la liste des URL publiques
 	@echo "    \033[36mAdminer\033[0m : http://adminer.net.ouiedire.www.localhost"
 	@echo "    \033[36mPortainer\033[0m : http://portainer.net.ouiedire.www.localhost"
 	@echo "    \033[36mTraefik\033[0m : http://traefik.net.ouiedire.www.localhost"
-	@echo
+	@echo "    \033[36mDirectus\033[0m : http://directus.net.ouiedire.www.localhost" 
