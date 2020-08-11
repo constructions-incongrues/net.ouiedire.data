@@ -1,6 +1,6 @@
 
 
-# net.ouiedire.www (v0.0.0-1-gf571844)
+# net.ouiedire.data (v0.0.0-1-gf571844)
 
 ## Pré-requis
 
@@ -33,8 +33,11 @@ Les logiciels suivant doivent être installés sur la machine hôte :
 
 ## Utilisation
 
-
 ## Développement
+
+### Contribution
+
+Se référer au [guide de contribution](/CONTRIBUTING.md).
 
 ### Commandes 
 
