@@ -32,9 +32,9 @@ git add <fichiers>
 git commit -m "Un message de commit signifiant"
 ```
 
-Si la branche de travail concerne un ticket existant, terminer le message de commit par `Fixes #<numéro-du-ticket>`.
+NB : Si la branche de travail concerne un ticket existant, terminer le message de commit par `Fixes #<numéro-du-ticket>`. Cela permettra de lier automatiquement la PR au ticket et de passer son état à "In progress" dans les projets Github où il est référencé.
 
-- Mettre à jour la branche à partir de la dernière version de la branche `master` :
+- Mettre à jour la branche de travail à partir de la dernière version de la branche `master` :
 
 ```
 git rebase origin/master
@@ -64,4 +64,9 @@ gh pr create
 gh pr merge --delete-branch --squash 
 ```
 
-ET WALA !
+L'état du ticket lié à la PR passe automatiquement à "Done" dans les projets Github où il est référencé.
+
+### Triomphe
+
+Pas de danse idoine ou hululement gutural à définir en fonction des préférences de chacun.
+ 
