@@ -55,6 +55,9 @@ gh pr create
 ```
 
 - Consulter les éventuels commentaires de revue, échanger à leur sujet et adapter le code en fonction du résultat de la discussion
+
+### Intégration à la branche stable
+
 - Une fois tous les commentaires résolus, merger la branche de travail vers la branche `master` :
 
 ```sh
