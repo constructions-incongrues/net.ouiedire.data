@@ -69,13 +69,13 @@ make stop
 
 ### Application
 
-- Page d'acceuil: (http://net.ouiedire.www.localhost)
+- Page d'acceuil: (http://net.ouiedire.data.localhost)
 
 ### Outils
 
-- Adminer: http://adminer.net.ouiedire.www.localhost
-- Portainer: http://portainer.net.ouiedire.www.localhost
-- Traefik: http://traefik.net.ouiedire.www.localhost
-- Directus: http://directus.net.ouiedire.www.localhost
+- Adminer: http://adminer.net.ouiedire.data.localhost
+- Portainer: http://portainer.net.ouiedire.data.localhost
+- Traefik: http://traefik.net.ouiedire.data.localhost
+- Directus: http://directus.net.ouiedire.data.localhost
 
 
