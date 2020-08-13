@@ -59,13 +59,16 @@ prune: envsubst ## Purge des artefacts créés par Docker. ATTENTION : les volum
 	docker-compose down \
 		--remove-orphans \
 		--rmi local
+	docker volume rm \
+		$(COMPOSE_PROJECT_PREFIX)_db \
+		$(COMPOSE_PROJECT_PREFIX)_directus_uploads
 
 ## Gestion de la base de données
 
 db-dump: envsubst ## Exporte le schéma de la base de données
 	# Démarrage du serveur de base de données
 	docker-compose up -d db
-	sleep 45
+	sleep 30
 
 	# Tables Directus : schéma et données
 	docker-compose run --rm --entrypoint mysqldump db \

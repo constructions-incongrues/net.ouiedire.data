@@ -5,7 +5,8 @@ services:
     image: mariadb:10.5.4
     env_file: .env
     volumes:
-      - ./db/sql/${DIRECTUS_DATABASE_DUMP}:/docker-entrypoint-initdb.d/${DIRECTUS_DATABASE_DUMP}
+      - ./db/sql/${DIRECTUS_DATABASE_DUMP}:/docker-entrypoint-initdb.d/00_${DIRECTUS_DATABASE_DUMP}
+      - ./db/sql/${APP_ENVIRONMENT}.sql:/docker-entrypoint-initdb.d/10_${APP_ENVIRONMENT}.sql
       - db:/var/lib/mysql
 
   directus:
