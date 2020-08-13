@@ -331,7 +331,7 @@ CREATE TABLE `directus_users` (
 
 LOCK TABLES `directus_users` WRITE;
 /*!40000 ALTER TABLE `directus_users` DISABLE KEYS */;
-INSERT INTO `directus_users` VALUES (1,'active',1,'Admin','User','admin@data.ouiedire.net','$2y$10$kMbvH3u4VuU3myXLTrbJM.y3zoG/.65mvEHU6hXTzmDtqn.5vF/Pe','te26GzShbf6kQANI3zMe02B2','UTC','en-US',NULL,NULL,NULL,NULL,1,'2020-08-13 12:17:51','/_/settings/collections',NULL,'auto',NULL,NULL);
+INSERT INTO `directus_users` VALUES (1,'active',1,'Admin','User','admin@data.ouiedire.net','$2y$10$kMbvH3u4VuU3myXLTrbJM.y3zoG/.65mvEHU6hXTzmDtqn.5vF/Pe','te26GzShbf6kQANI3zMe02B2','UTC','en-US',NULL,NULL,NULL,NULL,1,'2020-08-13 14:55:29','/_/collections',NULL,'auto',NULL,NULL);
 /*!40000 ALTER TABLE `directus_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -371,7 +371,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-13 12:17:59
+-- Dump completed on 2020-08-13 16:41:49
 -- MariaDB dump 10.17  Distrib 10.5.4-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: db    Database: ouiedire
@@ -483,7 +483,11 @@ CREATE TABLE `directus_user_sessions` (
   `created_on` datetime DEFAULT NULL,
   `token_expired_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
@@ -491,4 +495,4 @@ CREATE TABLE `directus_user_sessions` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-13 12:18:01
+-- Dump completed on 2020-08-13 16:41:51

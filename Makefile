@@ -65,7 +65,7 @@ prune: envsubst ## Purge des artefacts créés par Docker. ATTENTION : les volum
 db-dump: envsubst ## Exporte le schéma de la base de données
 	# Démarrage du serveur de base de données
 	docker-compose up -d db
-	sleep ${MYSQL_WAIT_TIMEOUT}
+	sleep 45
 
 	# Tables Directus : schéma et données
 	docker-compose run --rm --entrypoint mysqldump db \
