@@ -1,26 +1,17 @@
 <?php
 
-// Directus Project Config Example
-
-// Directus config files control everything that the API needs to know in order to run a project.
-// This includes database credentials, where to save files, and what social providers to allow
+// Configuration du projet Directus "local"
 
 return [
     'database' => [
         'type' => 'mysql',          // Only mysql is supported
-        'host' => 'localhost',
-        'port' => 3306,
-        'name' => 'directus',
-        'username' => 'root',
-        'password' => 'root',
+        'host' => getenv('DIRECTUS_DATABASE_HOST'),
+        'port' => getenv('DIRECTUS_DATABASE_PORT'),
+        'name' => getenv('DIRECTUS_DATABASE_NAME'),
+        'username' => getenv('DIRECTUS_DATABASE_USERNAME'),
+        'password' => getenv('DIRECTUS_DATABASE_PASSWORD'),
         'engine' => 'InnoDB',
         'charset' => 'utf8mb4',
-        // 'socket' => '',          // Path to socket. Remove the `host` key above when using sockets
-        // 'driver_options' => [    // Other MYSQL_PDO options. Can be used to connect to the database
-        //                          // over an encrypted connection. For more information, see
-        //                          // https://www.php.net/manual/en/ref.pdo-mysql.php#pdo-mysql.constants
-        //    PDO::MYSQL_ATTR_SSL_CAPATH => '/etc/ssl/certs',
-        // ]
     ],
 
     'cors' => [
@@ -110,7 +101,7 @@ return [
     ],
 
     'cache' => [
-        'enabled' => false,         // Cache all API responses
+        'enabled' => getenv('DIRECTUS_CACHE_ENABLED') === 'false' : false ? boolval(getenv('DIRECTUS_CACHE_ENABLED')),         // Cache all API responses
         'response_ttl' => 3600,     // Keep the cache for n seconds
         'pool' => [
             'adapter' => 'apc',     // What adapter to use to store the cache in
@@ -129,8 +120,8 @@ return [
     ],
 
     'auth' => [
-        'secret_key' => '1234',     // Used in the oAuth flow
-        'public_key' => '9876',
+        'secret_key' => getenv('DIRECTUS_AUTH_PUBLICKEY'),     // Used in the oAuth flow
+        'public_key' => getenv('DIRECTUS_AUTH_SECRETKEY'),
         'social_providers' => [
             // 'okta' => [
             //     'client_id' => '',
@@ -166,7 +157,7 @@ return [
 
     'tableBlacklist' => [],         // What tables to globally ignore within Directus
 
-    'env' => 'production',          // production, development, or staging
+    'env' => getenv('DIRECTUS_ENV'),          // production, development, or staging
                                     // Production silences stack traces and error details in API output
 
     'logger' => [
