@@ -31,7 +31,16 @@ help: ## Affichage de ce message d'aide
 clean: envsubst stop ## Suppression des conteneurs. Les volumes Docker sont conservés
 	docker-compose rm -f
 
-dev: env envsubst clean build start urls ## Démarrage de l'application et des outils de développement
+dev: env envsubst clean build  ## Démarrage de l'application et des outils de développement
+	DIRECTUS_DATABASE_DUMP=$(DIRECTUS_DATABASE_DUMP) \
+	MYSQL_WAIT_TIMEOUT=$(MYSQL_WAIT_TIMEOUT) \
+	docker-compose \
+		-f docker-compose.yml \
+		-f docker-compose.dev.yml \
+			up \
+			--remove-orphans \
+			-d
+	@$(MAKE) --no-print-directory urls
 
 logs: envsubst  ## Affiche un flux des logs de conteneurs de l'application
 	docker-compose logs -f
@@ -47,7 +56,9 @@ stop: envsubst ## Arrêt de l'application
 	docker-compose stop
 
 prune: envsubst ## Purge des artefacts créés par Docker. ATTENTION : les volumes Docker sont supprimés
-	docker-compose down
+	docker-compose down \
+		--remove-orphans \
+		--rmi local
 
 ## Gestion de la base de données
 
@@ -101,6 +112,7 @@ env: # Génération du fichier .env courant en fonction de l'environnement d'ex�
 
 envsubst: # Regénération des fichiers dépendants de la configuration environnementale
 	rm -f docker-compose.yml
+	envsubst < docker-compose.dev.yml.dist > docker-compose.dev.yml
 	envsubst < docker-compose.yml.dist > docker-compose.yml
 
 pre-start: portainer-rm clear-ports # Commandes exécutées avant un démarrage de l'application

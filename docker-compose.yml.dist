@@ -1,13 +1,6 @@
 version: '3.3'
 
 services:
-  adminer:
-    image: adminer:latest
-    labels:
-      - traefik.enable=${ADMINER_TRAEFIK_ENABLE}
-      - traefik.http.routers.${TRAEFIK_PREFIX}-adminer.rule=${ADMINER_TRAEFIK_RULE}
-      - traefik.http.routers.${TRAEFIK_PREFIX}-adminer.entrypoints=web
-
   db:
     image: mariadb:10.5.4
     env_file: .env
@@ -26,33 +19,6 @@ services:
       - traefik.http.routers.${TRAEFIK_PREFIX}-directus.entrypoints=web
     volumes:
       - directus_uploads:/var/directus/public/uploads
-
-  traefik:
-    command:
-      - --api=true
-      - --api.dashboard=true
-      - --providers.docker=true
-      - --providers.docker.exposedbydefault=false
-      - --entrypoints.web.address=:${TRAEFIK_HOST_PORT}
-    env_file: .env
-    image: traefik:v2.2.8
-    labels:
-      - traefik.enable=${TRAEFIK_TRAEFIK_ENABLE}
-      - traefik.port=8080
-      - traefik.http.routers.${TRAEFIK_PREFIX}-traefik.rule=${TRAEFIK_TRAEFIK_RULE}
-      - traefik.http.routers.${TRAEFIK_PREFIX}-traefik.service=api@internal
-    ports:
-      - ${TRAEFIK_HOST_PORT}:80
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-
-  portainer:
-      image: portainer/portainer:1.24.1-alpine
-      labels:
-        - traefik.enable=${PORTAINER_TRAEFIK_ENABLE}
-        - traefik.http.routers.${TRAEFIK_PREFIX}-portainer.rule=${PORTAINER_TRAEFIK_RULE}
-        - traefik.http.routers.${TRAEFIK_PREFIX}-portainer.entrypoints=web
-        - traefik.http.services.${TRAEFIK_PREFIX}-portainer.loadbalancer.server.port=9000
 
 volumes:
   db: ~
