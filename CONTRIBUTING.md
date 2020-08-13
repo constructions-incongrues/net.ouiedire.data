@@ -1,5 +1,9 @@
 # Guide de contribution
 
+## Pré-requis
+
+- [Github CLI](https://cli.github.com/)
+
 ## Branches
 
 - `master` : Cette branche contient le code stable de l'application. On ne peut y ajouter des modifications qu'en y mergeant des Pull Requests dûment testées et revues.
