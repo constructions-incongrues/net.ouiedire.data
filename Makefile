@@ -51,7 +51,7 @@ prune: envsubst ## Purge des artefacts créés par Docker. ATTENTION : les volum
 
 ## Gestion de la base de données
 
-db-dump: envsubst ## Exporte le schéma de la base de données
+db-dump: envsubst ## Exporte le schéma de la base de données  :A FAIRE DANS LE SHELL
 	# Démarrage du serveur de base de données
 	docker-compose up -d db
 	sleep ${MYSQL_WAIT_TIMEOUT}
