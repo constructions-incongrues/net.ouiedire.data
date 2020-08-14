@@ -78,7 +78,7 @@ prune: clean ## Purge des artefacts créés par Docker. ATTENTION : les volumes 
 
 ## Gestion de la base de données
 
-db.dump: envsubst ## Exporte le schéma de la base de données
+db-dump: envsubst ## Exporte le schéma de la base de données  :A FAIRE DANS LE SHELL
 	# Démarrage du serveur de base de données
 	docker-compose up -d db
 	sleep 30
