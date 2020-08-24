@@ -372,7 +372,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-24 12:42:06
+-- Dump completed on 2020-08-24 12:50:03
 -- MariaDB dump 10.17  Distrib 10.5.4-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: db    Database: ouiedire
@@ -496,7 +496,7 @@ CREATE TABLE `directus_user_sessions` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-24 12:42:08
+-- Dump completed on 2020-08-24 12:50:04
 -- MariaDB dump 10.17  Distrib 10.5.4-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: db    Database: ouiedire
@@ -590,4 +590,4 @@ CREATE TABLE `curators` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-24 12:42:09
+-- Dump completed on 2020-08-24 12:50:06
