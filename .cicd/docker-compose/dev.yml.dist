@@ -7,7 +7,7 @@ services:
           - traefik.enable=${ADMINER_TRAEFIK_ENABLE}
           - traefik.http.routers.${TRAEFIK_PREFIX}-adminer.rule=${ADMINER_TRAEFIK_RULE}
           - traefik.http.routers.${TRAEFIK_PREFIX}-adminer.entrypoints=web
-    
+
     traefik:
         command:
         - --api=true
