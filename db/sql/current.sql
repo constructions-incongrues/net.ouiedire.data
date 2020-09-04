@@ -327,16 +327,6 @@ CREATE TABLE `directus_users` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `directus_users`
---
-
-LOCK TABLES `directus_users` WRITE;
-/*!40000 ALTER TABLE `directus_users` DISABLE KEYS */;
-INSERT INTO `directus_users` VALUES (1,'active',1,'Admin','User','admin@data.ouiedire.net','$2y$10$kMbvH3u4VuU3myXLTrbJM.y3zoG/.65mvEHU6hXTzmDtqn.5vF/Pe','te26GzShbf6kQANI3zMe02B2','UTC','en-US',NULL,NULL,NULL,NULL,1,'2020-09-01 17:25:15','/_/collections/tracks',NULL,'auto',NULL,NULL);
-/*!40000 ALTER TABLE `directus_users` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `directus_webhooks`
 --
 
