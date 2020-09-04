@@ -1,3 +1,4 @@
 /.env
 /docker-compose.yml
 .cicd/docker-compose/*.yml
+.cicd/env/data.ouiedire.net.env
