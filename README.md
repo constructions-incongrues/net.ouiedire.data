@@ -60,7 +60,7 @@ L'exécution de cette commande affiche la liste des URL accessibles.
 #### Exporter la base de données Directus
 
 ```sh
-make db-dump
+make db.dump
 ```
 
 ### Contribuer au projet
