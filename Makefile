@@ -57,7 +57,7 @@ logs: envsubst  ## Affiche un flux des logs de conteneurs de l'application
 		-f .cicd/docker-compose/dev.yml \
 			logs -f
 
-start: pre-start envsubst ## Démarrage de l'application
+start: envsubst ## Démarrage de l'application
 	DIRECTUS_DATABASE_DUMP=$(DIRECTUS_DATABASE_DUMP) \
 	MYSQL_WAIT_TIMEOUT=$(MYSQL_WAIT_TIMEOUT) \
 	docker-compose up \
