@@ -18,8 +18,19 @@ services:
       - traefik.enable=${DIRECTUS_TRAEFIK_ENABLE}
       - traefik.http.routers.${TRAEFIK_PREFIX}-directus.rule=${DIRECTUS_TRAEFIK_RULE}
       - traefik.http.routers.${TRAEFIK_PREFIX}-directus.entrypoints=web
+      - traefik.docker.network=traefik
+    networks:
+      - default
+      - traefik
     volumes:
       - directus_uploads:/var/directus/public/uploads
+
+networks:
+  default:
+    internal: true
+  traefik:
+    external:
+      name: traefik
 
 volumes:
   db: ~

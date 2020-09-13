@@ -46,9 +46,9 @@ dev: env envsubst clean build  ## Démarrage de l'application et des outils de d
 			--remove-orphans \
 			-d
 	timeout -s TERM 60 bash -c \
-    	'while [[ "$$(curl -s -o /dev/null -L -w ''%{http_code}'' $(DIRECTUS_HOSTNAME))" != "200" ]]; do \
-    		echo "Waiting for $(DIRECTUS_HOSTNAME)" && sleep 2;\
-    	done'
+		'while [[ "$$(curl -s -o /dev/null -L -w ''%{http_code}'' $(DIRECTUS_HOSTNAME))" != "200" ]]; do \
+			echo "Waiting for $(DIRECTUS_HOSTNAME)" && sleep 2;\
+		done'
 	@$(MAKE) --no-print-directory help
 
 logs: envsubst  ## Affiche un flux des logs de conteneurs de l'application
@@ -116,13 +116,6 @@ db-dump: envsubst ## Exporte le schéma de la base de données (NB : ne fonction
 build: # Construction des images Docker de l'application
 	docker-compose build
 
-clear-ports: # Arrêt des services utilisant le port 8080
-	@for CONTAINER_ID in $$(docker ps --filter=expose=80 -q); do \
-		if docker port $${CONTAINER_ID} | grep 80; then \
-			docker stop $${CONTAINER_ID}; \
-		fi; \
-	done
-
 env: # Génération du fichier .env courant en fonction de l'environnement d'exécution
 	cat .cicd/env/$(APP_ENVIRONMENT).env > ./.env
 	echo "APP_ENVIRONMENT=$(APP_ENVIRONMENT)" >> ./.env
@@ -131,11 +124,6 @@ envsubst: # Regénération des fichiers dépendants de la configuration environn
 	rm -f docker-compose.yml
 	envsubst < .cicd/docker-compose/dev.yml.dist > .cicd/docker-compose/dev.yml
 	envsubst < docker-compose.yml.dist > docker-compose.yml
-
-pre-start: portainer-rm clear-ports # Commandes exécutées avant un démarrage de l'application
-
-portainer-rm: # Suppression d'instances de Portainer existantes
-	-docker rm -f $(COMPOSE_PROJECT_PREFIX)_portainer
 
 urls: # Affichage de la liste des URL publiques
 	@echo "Services"
@@ -147,5 +135,3 @@ urls: # Affichage de la liste des URL publiques
 	@echo "  Développement"
 	@echo
 	@echo "    \033[36mAdminer\033[0m : http://$(ADMINER_HOSTNAME)"
-	@echo "    \033[36mPortainer\033[0m : http://$(PORTAINER_HOSTNAME)"
-	@echo "    \033[36mTraefik\033[0m : http://$(TRAEFIK_HOSTNAME)"
