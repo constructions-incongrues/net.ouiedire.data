@@ -1,9 +1,20 @@
 version: '3.3'
 
+networks:
+  default:
+    internal: true
+  traefik:
+    external:
+      name: traefik
+
 services:
-    adminer:
-        image: adminer:latest
-        labels:
-          - traefik.enable=${ADMINER_TRAEFIK_ENABLE}
-          - traefik.http.routers.${TRAEFIK_PREFIX}-adminer.rule=${ADMINER_TRAEFIK_RULE}
-          - traefik.http.routers.${TRAEFIK_PREFIX}-adminer.entrypoints=web
+  adminer:
+    image: adminer:latest
+    labels:
+      - traefik.enable=${ADMINER_TRAEFIK_ENABLE}
+      - traefik.http.routers.${TRAEFIK_PREFIX}-adminer.rule=${ADMINER_TRAEFIK_RULE}
+      - traefik.http.routers.${TRAEFIK_PREFIX}-adminer.entrypoints=web
+      - traefik.docker.network=traefik
+    networks:
+      - default
+      - traefik
