@@ -17,6 +17,7 @@ Basée sur [Directus](https://directus.io/) elle permet notamment :
 - [Docker Compose](https://docs.docker.com/compose/)
 - [Git](https://git-scm.com/)
 - [Make](https://www.gnu.org/software/make/)
+- [Traefik](https://github.com/constructions-incongrues/net.constructions-incongrues.traefik)
 
 ### Composants
 
@@ -28,8 +29,6 @@ Basée sur [Directus](https://directus.io/) elle permet notamment :
 #### Outils de maintenance et surveillance
 
 - [`adminer`](https://www.adminer.org) : Interface graphique de gestion des bases de données du service `db`
-- [`portainer`](https://www.portainer.io) : Interface graphique de gestion du serveur Docker
-- [`traefik`](https://www.traefik.io) : Routeur HTTP et TCP. Point d'entrée vers les différents services de l'applications
 
 ### Interface en ligne de commande
 
